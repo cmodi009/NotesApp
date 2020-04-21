@@ -1,11 +1,13 @@
-package com.example.notesapp;
+package com.example.notesapp.note;
 
 import android.os.Bundle;
 
+import com.example.notesapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -29,6 +31,7 @@ public class AddNote extends AppCompatActivity {
     FirebaseFirestore fStore;
     EditText noteTitle,noteContent;
     ProgressBar progressBarSave;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class AddNote extends AppCompatActivity {
         setContentView(R.layout.activity_add_note);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         fStore = FirebaseFirestore.getInstance();
         noteContent = findViewById(R.id.addNoteContent);
@@ -60,7 +64,7 @@ public class AddNote extends AppCompatActivity {
 
                 progressBarSave.setVisibility(View.VISIBLE);
 
-                DocumentReference docref = fStore.collection("notes").document();
+                DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("myNotes").document();
                 Map<String,Object> note = new HashMap<>();
                 note.put("title",nTitle);
                 note.put("content",nContent);

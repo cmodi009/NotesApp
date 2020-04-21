@@ -1,4 +1,4 @@
-package com.example.notesapp;
+package com.example.notesapp.note;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +11,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.notesapp.MainActivity;
+import com.example.notesapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -25,6 +29,7 @@ public class EditNote extends AppCompatActivity {
     EditText editNoteTitle,editNoteContent;
     FirebaseFirestore fStore;
     ProgressBar spinner;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,7 @@ public class EditNote extends AppCompatActivity {
         setContentView(R.layout.activity_edit_note);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        user= FirebaseAuth.getInstance().getCurrentUser();
         fStore = fStore.getInstance();
         spinner = findViewById(R.id.progressBar2);
         data = getIntent();
@@ -62,7 +67,7 @@ public class EditNote extends AppCompatActivity {
 
                 // save note
 
-                DocumentReference docref = fStore.collection("notes").document(data.getStringExtra("noteId"));
+                DocumentReference docref = fStore.collection("notes").document(user.getUid()).collection("myNotes").document(data.getStringExtra("noteId"));
 
                 Map<String,Object> note = new HashMap<>();
                 note.put("title",nTitle);
@@ -72,7 +77,7 @@ public class EditNote extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(EditNote.this, "Note Saved.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

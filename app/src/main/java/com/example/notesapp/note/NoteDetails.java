@@ -1,11 +1,11 @@
-package com.example.notesapp;
+package com.example.notesapp.note;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.notesapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;

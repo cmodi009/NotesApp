@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.notesapp.NoteDetails;
+import com.example.notesapp.note.NoteDetails;
 import com.example.notesapp.R;
 
 import java.util.ArrayList;
