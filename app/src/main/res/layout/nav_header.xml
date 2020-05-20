@@ -7,7 +7,7 @@
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/cover"
+        android:background="@android:color/holo_orange_dark"
         android:layout_height="200dp">
 
         <TextView
@@ -72,9 +72,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userDisplayName" />
-
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

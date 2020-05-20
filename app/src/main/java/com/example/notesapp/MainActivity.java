@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -318,5 +319,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             noteAdapter.stopListening();
         }
     }
-
 }

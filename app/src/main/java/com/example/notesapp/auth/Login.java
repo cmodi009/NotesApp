@@ -52,6 +52,8 @@ public class Login extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
+        showWarning();
+
         loginNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
