@@ -1,5 +1,5 @@
 # NotesApp
-Simple NotesApp using Firebase
+Simple NotesApp using Firebase (A free database provided by Google)
 
 ![](images/splash.png)
 
